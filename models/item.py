@@ -1,4 +1,5 @@
 from db import db
+from models.tag import TagModel
 
 class ItemModel(db.Model):
     __tablename__ = "items"
@@ -9,3 +10,4 @@ class ItemModel(db.Model):
 
     store_id = db.Column(db.Integer, db.ForeignKey("stores.id"), nullable=False)
     store = db.relationship("StoreModel", back_populates="items")
+    tags = db.relationship("TagModel", secondary="item_tags", back_populates="items")
